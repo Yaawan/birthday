@@ -32,3 +32,63 @@
         background: #ff5e7d;
         transform: rotate(-45deg);
         animation: fly 4s linear forwards;
+    }
+    .heart::before,
+    .heart::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        border-radius: 50%;
+        position: absolute;
+    }
+    .heart::before { top: -50%; }
+    .heart::after { right: -50%; }
+    @keyframes fly {
+        0% {
+            opacity: 1;
+            transform: rotate(-45deg) translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: rotate(-45deg) translateY(-100vh);
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- 替换为无跨域、可公网播放的生日音乐 -->
+<audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0c6ff1bcc.mp3" type="audio/mpeg">
+
+
+<div class="text">亲爱的，生日快乐！🎂</div>
+
+<script>
+    // 页面加载立即弹窗
+    alert("生日快乐呀！");
+
+    // 弹窗关闭后（用户交互）自动播放音乐
+    const music = document.getElementById('bgMusic');
+    music.volume = 0.3;
+    music.play().catch(err => console.log("音乐加载完成，点击确认后播放"));
+
+    // 从屏幕底部生成爱心，向上飘
+    function makeHeart() {
+        const h = document.createElement('div');
+        h.classList.add('heart');
+        const size = Math.random() * 18 + 12;
+        h.style.width = size + 'px';
+        h.style.height = size + 'px';
+        h.style.left = Math.random() * window.innerWidth + 'px';
+        h.style.bottom = '0px'; // 从底部生成
+        document.body.appendChild(h);
+        // 爱心飘完自动删除，避免内存堆积
+        setTimeout(() => h.remove(), 4000);
+    }
+    setInterval(makeHeart, 120);
+</script>
+
+</body>
+</html>
