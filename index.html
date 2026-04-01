@@ -17,31 +17,28 @@ body{width:100vw;height:100vh;background:#1a1128;overflow:hidden;display:flex;al
 <body>
 
 <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2025/01/12/audio_999a9f9b2e.mp3" type="audio/mpeg">
-</audio>
+  <source src="https://music.163.com/song/media/outer/url?id=2088198840.mp3" type="audio/mpeg">
+
 
 <div class="text">亲爱的，生日快乐！🎂</div>
 
 <script>
-// 一打开弹窗
-alert('生日快乐呀！🎂');
+alert("生日快乐呀！");
 
-// 关闭弹窗后 → 自动播放音乐（浏览器允许！）
 const music = document.getElementById('bgMusic');
 music.volume = 0.3;
-music.play();
+music.play().catch(e => console.log("等待用户交互"));
 
-// 爱心飘屏
-function makeHeart(){
+function makeHeart() {
   const h = document.createElement('div');
   h.classList.add('heart');
-  const s = Math.random()*15+10;
-  h.style.width = h.style.height = s+'px';
-  h.style.left = Math.random()*window.innerWidth+'px';
+  const s = Math.random() * 15 + 10;
+  h.style.width = h.style.height = s + 'px';
+  h.style.left = Math.random() * window.innerWidth + 'px';
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),4000);
+  setTimeout(() => h.remove(), 4000);
 }
-setInterval(makeHeart,120);
+setInterval(makeHeart, 120);
 </script>
 </body>
 </html>
