@@ -4,41 +4,31 @@
 <meta charset="UTF-8">
 <title>生日快乐 ❤️</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{width:100vw;height:100vh;background:#1a1128;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:"Microsoft YaHei",sans-serif}
-.text{color:#fff;font-size:36px;text-align:center;z-index:100;text-shadow:0 0 15px #ff5e7d}
-.heart{position:absolute;background:#ff5e7d;transform:rotate(-45deg);animation:fly 4s linear infinite}
-.heart::before,.heart::after{content:'';width:100%;height:100%;background:inherit;border-radius:50%;position:absolute}
-.heart::before{top:-50%}
-.heart::after{right:-50%}
-@keyframes fly{0%{opacity:1;transform:rotate(-45deg) translateY(0)}100%{opacity:0;transform:rotate(-45deg) translateY(-120vh)}}
-</style>
-</head>
-<body>
-
-<audio id="bgMusic" loop>
-  <source src="https://music.163.com/song/media/outer/url?id=2088198840.mp3" type="audio/mpeg">
-
-
-<div class="text">亲爱的，生日快乐！🎂</div>
-
-<script>
-alert("生日快乐呀！");
-
-const music = document.getElementById('bgMusic');
-music.volume = 0.3;
-music.play().catch(e => console.log("等待用户交互"));
-
-function makeHeart() {
-  const h = document.createElement('div');
-  h.classList.add('heart');
-  const s = Math.random() * 15 + 10;
-  h.style.width = h.style.height = s + 'px';
-  h.style.left = Math.random() * window.innerWidth + 'px';
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 4000);
-}
-setInterval(makeHeart, 120);
-</script>
-</body>
-</html>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        width: 100vw;
+        height: 100vh;
+        background: #1a1128;
+        overflow: hidden;
+        font-family: "Microsoft YaHei", sans-serif;
+    }
+    .text {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 38px;
+        text-align: center;
+        z-index: 9999;
+        text-shadow: 0 0 15px #ff5e7d;
+    }
+    .heart {
+        position: absolute;
+        background: #ff5e7d;
+        transform: rotate(-45deg);
+        animation: fly 4s linear forwards;
