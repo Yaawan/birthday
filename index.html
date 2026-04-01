@@ -1,97 +1,42 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>生日快乐 ❤️</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            width: 100vw;
-            height: 100vh;
-            background: #1a1a2e;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: "Microsoft YaHei", sans-serif;
-        }
-        .text {
-            color: #fff;
-            font-size: 32px;
-            text-align: center;
-            z-index: 999;
-            position: relative;
-            text-shadow: 0 0 10px #ff4d6d;
-        }
-        .heart {
-            position: absolute;
-            background: #ff4d6d;
-            transform: rotate(-45deg);
-            animation: float 3s linear infinite;
-        }
-        .heart::before,
-        .heart::after {
-            content: '';
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            border-radius: 50%;
-            position: absolute;
-        }
-        .heart::before { top: -50%; }
-        .heart::after { right: -50%; }
-
-        @keyframes float {
-            0% {
-                opacity: 1;
-                transform: rotate(-45deg) translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: rotate(-45deg) translateY(-100vh);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>生日快乐 ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:100vw;height:100vh;background:#1a1128;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:"Microsoft YaHei",sans-serif}
+.text{color:#fff;font-size:36px;text-align:center;z-index:100;text-shadow:0 0 15px #ff5e7d;white-space:nowrap;overflow:hidden;border-right:3px solid #ff5e7d;animation: typing 4s steps(20, end), blink-caret .75s step-end infinite}
+.heart{position:absolute;background:#ff5e7d;transform:rotate(-45deg);animation:fly 4s linear infinite}
+.heart::before,.heart::after{content:'';width:100%;height:100%;background:inherit;border-radius:50%;position:absolute}
+.heart::before{top:-50%}
+.heart::after{right:-50%}
+@keyframes fly{0%{opacity:1;transform:rotate(-45deg) translateY(0)}100%{opacity:0;transform:rotate(-45deg) translateY(-120vh)}}
+@keyframes typing {from {width: 0}to {width: 100%}}
+@keyframes blink-caret {from, to {border-color: transparent}50% {border-color: #ff5e7d}}
+</style>
 </head>
 <body>
+<!-- 背景音乐，自动播放 -->
+<audio autoplay loop>
+  <source src="https://music.163.com/song/media/outer/url?id=1868563576.mp3" type="audio/mpeg">
 
-    <div class="text">生日快乐呀 🎂</div>
 
-    <script>
-        // 一打开就弹窗祝福
-        alert('生日快乐！愿你天天开心～');
+<div class="text">亲爱的，生日快乐！🎂</div>
 
-        // 自动生成满屏飘爱心
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            
-            // 随机大小、位置、下落速度
-            const size = Math.random() * 20 + 10;
-            const startPosX = Math.random() * window.innerWidth;
-            const delay = Math.random() * 3;
-            const duration = Math.random() * 2 + 3;
-
-            heart.style.width = `${size}px`;
-            heart.style.height = `${size}px`;
-            heart.style.left = `${startPosX}px`;
-            heart.style.animationDelay = `${delay}s`;
-            heart.style.animationDuration = `${duration}s`;
-
-            document.body.appendChild(heart);
-
-            // 爱心飘完自动删除
-            setTimeout(() => {
-                heart.remove();
-            }, 3000);
-        }
-
-        // 持续生成爱心
-        setInterval(createHeart, 100);
-    </script>
+<script>
+alert('生日快乐呀！愿你永远被爱包围～');
+function makeHeart(){
+  const h=document.createElement('div');
+  h.classList.add('heart');
+  const s=Math.random()*15+10;
+  h.style.width=h.style.height=s+'px';
+  h.style.left=Math.random()*window.innerWidth+'px';
+  h.style.animationDelay=Math.random()*4+'s';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+}
+setInterval(makeHeart,120);
+</script>
 </body>
 </html>
